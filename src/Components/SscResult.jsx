@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 
 const SSCResultExtractor = () => {
@@ -86,7 +85,6 @@ const SSCResultExtractor = () => {
   };
 
   const parseResultPage = async (url) => {
-    
     await new Promise(resolve => setTimeout(resolve, 2000));
 
     const rollNumberMatch = url.match(/(\d{10})_/);
@@ -202,29 +200,31 @@ const SSCResultExtractor = () => {
   };
 
   return (
-    <div className=" bg-cyan-800 font-sans">
-      <div className="container mx-auto  px-4 py-8   items-center">
+    <div className="min-h-screen bg-indigo-400 flex justify-center items-center font-sans">
+      <div className="container mx-auto px-3 sm:px-4 lg:px-6 py-4 sm:py-6 lg:py-8 ">
         {/* Header */}
-        <div className="text-center mb-8 ">
-          <h1 className="text-4xl font-extrabold text-white dark:text-gray-100 mb-2">
-            <i className="fas fa-graduation-cap mr-3"></i>
+        <div className="text-center mb-6 sm:mb-8 ">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mb-2">
+            <span className="text-yellow-300 mr-2">🎓</span>
             SSC Result Extractor
           </h1>
-          <p className="text-white dark:text-gray-300 opacity-80">Extract student details from SSC result URLs</p>
+          <p className="text-cyan-100 text-sm sm:text-base opacity-90">
+            Extract student details from SSC result URLs
+          </p>
         </div>
 
         {/* Input Section */}
-        <div className="max-w-4xl mx-auto mb-8">
-          <div className="glass-effect rounded-xl p-6 shadow-xl dark:bg-gray-800 dark:border-gray-700">
+        <div className="max-w-4xl mx-auto mb-6 sm:mb-8">
+          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 shadow-xl border border-white/20">
             <div className="mb-4">
-              <label htmlFor="resultUrl" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                <i className="fas fa-link mr-2"></i>Result URL
+              <label htmlFor="resultUrl" className="block text-sm font-medium text-white mb-2">
+                🔗 Result URL
               </label>
               <input
                 type="url"
                 id="resultUrl"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400"
-                placeholder="Enter SSC result URL (e.g., https://example.com/result?roll=123456)"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base bg-white"
+                placeholder="Enter SSC result URL"
                 value={resultUrl}
                 onChange={(e) => setResultUrl(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && extractData()}
@@ -232,31 +232,30 @@ const SSCResultExtractor = () => {
             </div>
             <button
               onClick={extractData}
-              className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-3 px-6 rounded-lg hover:from-blue-600 hover:to-purple-700 transition duration-300 hover-scale focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+              className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-2 sm:py-3 px-4 sm:px-6 rounded-lg hover:from-blue-600 hover:to-purple-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 text-sm sm:text-base"
               disabled={loading}
             >
               {loading ? (
                 <div className="flex items-center justify-center">
-                  <div className="loading-spinner w-5 h-5 border-2 border-t-2 border-white border-t-blue-300 mr-2"></div>
+                  <div className="loading-spinner w-4 h-4 sm:w-5 sm:h-5 border-2 border-t-2 border-white border-t-blue-300 mr-2"></div>
                   Extracting...
                 </div>
               ) : (
                 <>
-                  <i className="fas fa-search mr-2"></i>Extract Student Details
+                  🔍 Extract Student Details
                 </>
               )}
             </button>
           </div>
         </div>
 
-
         {/* Error Section */}
         {error && (
-          <div id="error" className="max-w-2xl mx-auto fade-in">
-            <div className="bg-red-100 dark:bg-red-900 border border-red-400 text-red-700 dark:text-red-300 px-4 py-3 rounded-lg">
+          <div className="max-w-4xl mx-auto mb-6 fade-in">
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg">
               <div className="flex items-center">
-                <i className="fas fa-exclamation-triangle mr-2"></i>
-                <span id="errorMessage">{error}</span>
+                <span className="mr-2">⚠️</span>
+                <span className="text-sm sm:text-base">{error}</span>
               </div>
             </div>
           </div>
@@ -264,86 +263,141 @@ const SSCResultExtractor = () => {
 
         {/* Results Section */}
         {studentData && !loading && !error && (
-          <div id="results" className="max-w-6xl mx-auto fade-in">
+          <div className="max-w-6xl mx-auto fade-in space-y-4 sm:space-y-6">
             {/* Student Details Card */}
-            <div className="glass-effect rounded-xl p-6 shadow-xl mb-6 dark:bg-gray-800 dark:border-gray-700">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">
-                  <i className="fas fa-user-graduate mr-2"></i>Student Details
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 shadow-xl border border-white/20">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 space-y-2 sm:space-y-0">
+                <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-white">
+                  👨‍🎓 Student Details
                 </h2>
                 <button
                   onClick={exportToCSV}
-                  className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                  className="bg-green-500 hover:bg-green-600 text-white px-3 sm:px-4 py-2 rounded-lg transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 text-sm sm:text-base w-full sm:w-auto"
                 >
-                  <i className="fas fa-download mr-2"></i>Export CSV
+                  📥 Export CSV
                 </button>
               </div>
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4" id="studentInfo">
-                <div className="bg-blue-50 dark:bg-blue-900 p-4 rounded-lg">
-                  <h4 className="font-semibold text-white ">Candidate Name</h4>
-                  <p className="text-white">{studentData.name}</p>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+                <div className="bg-blue-600/80 p-3 sm:p-4 rounded-lg">
+                  <h4 className="font-semibold text-white text-sm">Candidate Name</h4>
+                  <p className="text-white text-sm sm:text-base break-words">{studentData.name}</p>
                 </div>
-                <div className="bg-green-50 dark:bg-green-900  p-4 rounded-lg">
-                  <h4 className="font-semibold text-white">Roll Number</h4>
-                  <p className="text-white">{studentData.rollNumber}</p>
+                <div className="bg-green-600/80 p-3 sm:p-4 rounded-lg">
+                  <h4 className="font-semibold text-white text-sm">Roll Number</h4>
+                  <p className="text-white text-sm sm:text-base">{studentData.rollNumber}</p>
                 </div>
-                <div className="bg-purple-50 dark:bg-purple-900 p-4 rounded-lg">
-                  <h4 className="font-semibold text-white">Registration No.</h4>
-                  <p className="text-white">{studentData.registrationNumber}</p>
+                <div className="bg-purple-600/80 p-3 sm:p-4 rounded-lg sm:col-span-2 lg:col-span-1">
+                  <h4 className="font-semibold text-white text-sm">Registration No.</h4>
+                  <p className="text-white text-sm sm:text-base break-all">{studentData.registrationNumber}</p>
                 </div>
-                <div className="bg-gray-500 p-4 rounded-lg">
-                  <h4 className="font-semibold text-white">Status</h4>
-                  <p className="text-white font-bold">{studentData.status}</p>
+                <div className="bg-gray-600/80 p-3 sm:p-4 rounded-lg">
+                  <h4 className="font-semibold text-white text-sm">Status</h4>
+                  <p className="text-white font-bold text-sm sm:text-base">{studentData.status}</p>
                 </div>
-                <div className="bg-indigo-50 dark:bg-indigo-900 p-4 rounded-lg col-span-full md:col-span-2">
-                  <h4 className="font-semibold text-white">Exam Details</h4>
-                  <p className="text-gray-100">{studentData.examName}</p>
-                  <p className="text-green-100 text-sm">{studentData.examDate} | {studentData.examTime}</p>
+                
+                <div className="bg-indigo-600/80 p-3 sm:p-4 rounded-lg col-span-full sm:col-span-2">
+                  <h4 className="font-semibold text-white text-sm">Exam Details</h4>
+                  <p className="text-gray-100 text-sm break-words">{studentData.examName}</p>
+                  <p className="text-green-100 text-xs sm:text-sm">{studentData.examDate} | {studentData.examTime}</p>
                 </div>
-                <div className="bg-pink-50 dark:bg-pink-900 p-4 rounded-lg col-span-full md:col-span-2">
-                  <h4 className="font-semibold text-white">Test Venue</h4>
-                  <p className="text-gray-200">{studentData.testVenue}</p>
+                <div className="bg-pink-600/80 p-3 sm:p-4 rounded-lg col-span-full sm:col-span-2">
+                  <h4 className="font-semibold text-white text-sm">Test Venue</h4>
+                  <p className="text-gray-200 text-sm break-words">{studentData.testVenue}</p>
                 </div>
               </div>
             </div>
 
             {/* Marks Breakdown */}
-            <div className=" rounded-xl p-6 shadow-xl mb-6 dark:bg-gray-800 dark:border-gray-700">
-              <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">
-                <i className="fas fa-chart-bar mr-2"></i>Marks Breakdown
+            <div className="bg-white rounded-xl p-4 sm:p-6 shadow-xl">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-4">
+                📊 Marks Breakdown
               </h3>
-              <div className="overflow-x-auto">
+              
+              {/* Mobile Card View */}
+              <div className="block lg:hidden space-y-3">
+                {studentData.sections.map((section, index) => (
+                  <div key={index} className="bg-gray-50 p-4 rounded-lg border">
+                    <h4 className="font-semibold text-gray-800 mb-3 text-sm">{section.name}</h4>
+                    <div className="grid grid-cols-2 gap-2 text-xs mb-3">
+                      <div>Marks Obtained: <span className="font-semibold">{section.marks}</span></div>
+                      <div>Total Marks: <span className="font-semibold">{section.totalMarks}</span></div>
+                      <div>Percentage: <span className="font-semibold">{((section.marks / section.totalMarks) * 100).toFixed(1)}%</span></div>
+                      <div>Attempted: <span className="font-semibold">{section.attempted}</span></div>
+                      <div>Correct: <span className="font-semibold text-green-600">{section.correct}</span></div>
+                      <div>Wrong: <span className="font-semibold text-red-600">{section.wrong}</span></div>
+                      <div>Unattempted: <span className="font-semibold text-gray-600">{section.unattempted}</span></div>
+                    </div>
+                    <div className="flex justify-center">
+                      <span className={`px-3 py-1 rounded-full text-xs font-semibold ${getAccuracyColor(section.accuracy)}`}>
+                        Accuracy: {section.accuracy}%
+                      </span>
+                    </div>
+                  </div>
+                ))}
+                
+                {/* Total Row for Mobile */}
+                <div className="bg-blue-50 p-4 rounded-lg border-2 border-blue-200">
+                  <h4 className="font-bold text-gray-800 mb-3 text-center">OVERALL PERFORMANCE</h4>
+                  <div className="grid grid-cols-2 gap-2 text-sm mb-3">
+                    <div>Total Marks: <span className="font-bold">{studentData.totalMarksObtained}</span></div>
+                    <div>Maximum Marks: <span className="font-bold">{studentData.totalMarks}</span></div>
+                    <div>Percentage: <span className="font-bold">{((studentData.totalMarksObtained / studentData.totalMarks) * 100).toFixed(1)}%</span></div>
+                    <div>Total Attempted: <span className="font-bold">{studentData.totalAttempted}</span></div>
+                  </div>
+                  <div className="flex justify-center">
+                    <span className={`px-3 py-1 rounded-full text-sm font-semibold ${getAccuracyColor(studentData.overallAccuracy)}`}>
+                      Overall Accuracy: {studentData.overallAccuracy}%
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Desktop Table View */}
+              <div className="hidden lg:block overflow-x-auto">
                 <table className="w-full table-auto">
                   <thead>
-                    <tr className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300">
-                      <th className="px-4 py-2 text-left">Subject</th>
-                      <th className="px-4 py-2 text-center">Marks Obtained</th>
-                      <th className="px-4 py-2 text-center">Total Marks</th>
-                      <th className="px-4 py-2 text-center">Percentage</th>
-                      <th className="px-4 py-2 text-center">Grade</th>
+                    <tr className="bg-gray-100 text-gray-700">
+                      <th className="px-4 py-3 text-left font-semibold">Subject</th>
+                      <th className="px-4 py-3 text-center font-semibold">Marks Obtained</th>
+                      <th className="px-4 py-3 text-center font-semibold">Total Marks</th>
+                      <th className="px-4 py-3 text-center font-semibold">Percentage</th>
+                      <th className="px-4 py-3 text-center font-semibold">Attempted</th>
+                      <th className="px-4 py-3 text-center font-semibold">Correct</th>
+                      <th className="px-4 py-3 text-center font-semibold">Wrong</th>
+                      <th className="px-4 py-3 text-center font-semibold">Unattempted</th>
+                      <th className="px-4 py-3 text-center font-semibold">Accuracy</th>
                     </tr>
                   </thead>
                   <tbody>
                     {studentData.sections.map((section, index) => (
-                      <tr key={index} className="border-b dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300">
-                        <td className="px-4 py-2 font-medium">{section.name}</td>
-                        <td className="px-4 py-2 text-center">{section.marks}</td>
-                        <td className="px-4 py-2 text-center">{section.totalMarks}</td>
-                        <td className="px-4 py-2 text-center">{((section.marks / section.totalMarks) * 100).toFixed(1)}%</td>
-                        <td className="px-4 py-2 text-center">
+                      <tr key={index} className="border-b hover:bg-gray-50 text-gray-700">
+                        <td className="px-4 py-3 font-medium">{section.name}</td>
+                        <td className="px-4 py-3 text-center font-semibold">{section.marks}</td>
+                        <td className="px-4 py-3 text-center">{section.totalMarks}</td>
+                        <td className="px-4 py-3 text-center">{((section.marks / section.totalMarks) * 100).toFixed(1)}%</td>
+                        <td className="px-4 py-3 text-center">{section.attempted}</td>
+                        <td className="px-4 py-3 text-center text-green-600 font-semibold">{section.correct}</td>
+                        <td className="px-4 py-3 text-center text-red-600 font-semibold">{section.wrong}</td>
+                        <td className="px-4 py-3 text-center text-gray-600">{section.unattempted}</td>
+                        <td className="px-4 py-3 text-center">
                           <span className={`px-2 py-1 rounded-full text-xs font-semibold ${getAccuracyColor(section.accuracy)}`}>
                             {section.accuracy}%
                           </span>
                         </td>
                       </tr>
                     ))}
-                    <tr className="border-b dark:border-gray-600 bg-gray-100 dark:bg-gray-700 font-bold text-gray-800 dark:text-gray-200">
-                      <td className="px-4 py-2">TOTAL</td>
-                      <td className="px-4 py-2 text-center">{studentData.totalMarksObtained}</td>
-                      <td className="px-4 py-2 text-center">{studentData.totalMarks}</td>
-                      <td className="px-4 py-2 text-center">{((studentData.totalMarksObtained / studentData.totalMarks) * 100).toFixed(1)}%</td>
-                      <td className="px-4 py-2 text-center">
-                        <span className={`px-2 py-1 rounded-full text-xs font-semibold ${getAccuracyColor(studentData.overallAccuracy)}`}>
+                    <tr className="border-b-2 bg-blue-50 font-bold text-gray-800 border-blue-200">
+                      <td className="px-4 py-4 text-lg">TOTAL</td>
+                      <td className="px-4 py-4 text-center text-lg">{studentData.totalMarksObtained}</td>
+                      <td className="px-4 py-4 text-center text-lg">{studentData.totalMarks}</td>
+                      <td className="px-4 py-4 text-center text-lg">{((studentData.totalMarksObtained / studentData.totalMarks) * 100).toFixed(1)}%</td>
+                      <td className="px-4 py-4 text-center text-lg">{studentData.totalAttempted}</td>
+                      <td className="px-4 py-4 text-center text-green-600 text-lg">{studentData.totalCorrect}</td>
+                      <td className="px-4 py-4 text-center text-red-600 text-lg">{studentData.totalWrong}</td>
+                      <td className="px-4 py-4 text-center text-gray-600 text-lg">{studentData.totalUnattempted}</td>
+                      <td className="px-4 py-4 text-center">
+                        <span className={`px-3 py-2 rounded-full text-sm font-bold ${getAccuracyColor(studentData.overallAccuracy)}`}>
                           {studentData.overallAccuracy}%
                         </span>
                       </td>
@@ -354,42 +408,42 @@ const SSCResultExtractor = () => {
             </div>
 
             {/* Question Analysis */}
-            <div className=" rounded-xl p-6 shadow-xl bg-emerald-100 dark:border-gray-700">
-              <h3 className="text-xl font-bold text-gray-800  mb-4">
-                <i className="fas fa-analytics mr-2 text-red-500"></i>Question Analysis
+            <div className="bg-white rounded-xl p-4 sm:p-6 shadow-xl">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-4">
+                📈 Question Analysis
               </h3>
-              <div className="grid md:grid-cols-3 gap-4">
-                <div className="bg-green-50 dark:bg-green-900 p-4 rounded-lg text-center">
-                  <div className="text-2xl font-bold text-white">{studentData.totalCorrect}</div>
-                  <div className="text-green-800 dark:text-green-300">Correct Answers</div>
-                  <div className="text-green-600 dark:text-green-400 text-sm">{studentData.totalAttempted} Attempted</div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+                <div className="bg-green-50 p-4 rounded-lg text-center">
+                  <div className="text-xl sm:text-2xl font-bold text-green-600">{studentData.totalCorrect}</div>
+                  <div className="text-green-800 text-sm sm:text-base">Correct Answers</div>
+                  <div className="text-green-600 text-xs sm:text-sm">{studentData.totalAttempted} Attempted</div>
                 </div>
-                <div className="bg-red-50 dark:bg-red-900 p-4 rounded-lg text-center">
-                  <div className="text-2xl font-bold text-white">{studentData.totalWrong}</div>
-                  <div className="text-red-800 dark:text-red-300">Wrong Answers</div>
-                  <div className="text-red-600 dark:text-red-400 text-sm">-{((studentData.totalWrong * 0.5)).toFixed(1)} Penalty</div>
+                <div className="bg-red-50 p-4 rounded-lg text-center">
+                  <div className="text-xl sm:text-2xl font-bold text-red-600">{studentData.totalWrong}</div>
+                  <div className="text-red-800 text-sm sm:text-base">Wrong Answers</div>
+                  <div className="text-red-600 text-xs sm:text-sm">-{((studentData.totalWrong * 0.5)).toFixed(1)} Penalty</div>
                 </div>
-                <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg text-center">
-                  <div className="text-2xl font-bold text-gray-600 dark:text-gray-200">{studentData.totalUnattempted}</div>
-                  <div className="text-gray-800 dark:text-gray-300">Unattempted</div>
-                  <div className="text-gray-600 dark:text-gray-400 text-sm">No Penalty</div>
+                <div className="bg-gray-50 p-4 rounded-lg text-center">
+                  <div className="text-xl sm:text-2xl font-bold text-gray-600">{studentData.totalUnattempted}</div>
+                  <div className="text-gray-800 text-sm sm:text-base">Unattempted</div>
+                  <div className="text-gray-600 text-xs sm:text-sm">No Penalty</div>
                 </div>
               </div>
 
               {/* Section-wise Analysis */}
-              <div className="bg-white rounded-xl p-6 shadow-xl mt-6 fade-in ">
-                <h3 className="text-xl font-bold  mb-4">
-                  <i className="fas fa-chart-pie mr-2 text-black"></i>Section-wise Analysis
+              <div className="bg-gray-50 rounded-xl p-4 sm:p-6 mt-4 sm:mt-6">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-4">
+                  📊 Section-wise Analysis
                 </h3>
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   {studentData.sections.map((section, index) => (
-                    <div key={index} className="bg-white dark:bg-gray-900 p-4 rounded-lg border dark:border-gray-700">
-                      <h4 className="font-semibold text-gray-800 dark:text-gray-100 mb-2">{section.name}</h4>
-                      <div className="grid grid-cols-2 gap-2 text-sm">
-                        <div className="text-green-600 dark:text-green-400">✓ Correct: {section.correct}</div>
-                        <div className="text-red-600 dark:text-red-400">✗ Wrong: {section.wrong}</div>
-                        <div className="text-gray-600 dark:text-gray-400">— Unattempted: {section.unattempted}</div>
-                        <div className="text-blue-600 dark:text-blue-400">📊 Accuracy: {section.accuracy}%</div>
+                    <div key={index} className="bg-white p-4 rounded-lg border">
+                      <h4 className="font-semibold text-gray-800 mb-2 text-sm sm:text-base">{section.name}</h4>
+                      <div className="grid grid-cols-2 gap-2 text-xs sm:text-sm">
+                        <div className="text-green-600">✓ Correct: {section.correct}</div>
+                        <div className="text-red-600">✗ Wrong: {section.wrong}</div>
+                        <div className="text-gray-600">— Unattempted: {section.unattempted}</div>
+                        <div className="text-blue-600">📊 Accuracy: {section.accuracy}%</div>
                       </div>
                     </div>
                   ))}
@@ -400,22 +454,13 @@ const SSCResultExtractor = () => {
         )}
       </div>
 
-
       <style>
         {`
-    
         .loading-spinner {
           border: 4px solid #f3f3f3;
           border-top: 4px solid #3498db;
           border-radius: 50%;
-          width: 40px;
-          height: 40px;
           animation: spin 2s linear infinite;
-          margin: 20px auto;
-        }
-        .dark .loading-spinner {
-          border-color: #4b5563; /* dark gray */
-          border-top-color: #60a5fa; /* light blue */
         }
         @keyframes spin {
           0% { transform: rotate(0deg); }
@@ -428,12 +473,6 @@ const SSCResultExtractor = () => {
           from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }
         }
-        .hover-scale {
-          transition: transform 0.2s ease;
-        }
-        .hover-scale:hover {
-          transform: scale(1.02);
-        }
         `}
       </style>
     </div>
@@ -441,4 +480,3 @@ const SSCResultExtractor = () => {
 };
 
 export default SSCResultExtractor;
-
