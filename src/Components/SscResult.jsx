@@ -304,7 +304,7 @@ const SSCResultExtractor = () => {
         </div>
       </div>
     </div>
-  );
+  
 
             {/* Marks Breakdown */}
             <div className="bg-white rounded-xl p-4 sm:p-6 shadow-xl">
