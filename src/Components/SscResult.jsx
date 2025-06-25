@@ -264,49 +264,47 @@ const SSCResultExtractor = () => {
         {/* Results Section */}
         {studentData && !loading && !error && (
           <div className="max-w-6xl mx-auto fade-in space-y-4 sm:space-y-6">
-            {/* Student Details Card */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 shadow-xl border border-white/20">
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 space-y-2 sm:space-y-0">
-                <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-white">
-                  👨‍🎓 Student Details
-                </h2>
-                <button
-                  onClick={exportToCSV}
-                  className="bg-green-500 hover:bg-green-600 text-white px-3 sm:px-4 py-2 rounded-lg transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 text-sm sm:text-base w-full sm:w-auto"
-                >
-                  📥 Export CSV
-                </button>
-              </div>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-                <div className="bg-blue-600/80 p-3 sm:p-4 rounded-lg">
-                  <h4 className="font-semibold text-white text-sm">Candidate Name</h4>
-                  <p className="text-white text-sm sm:text-base break-words">{studentData.name}</p>
-                </div>
-                <div className="bg-green-600/80 p-3 sm:p-4 rounded-lg">
-                  <h4 className="font-semibold text-white text-sm">Roll Number</h4>
-                  <p className="text-white text-sm sm:text-base">{studentData.rollNumber}</p>
-                </div>
-                <div className="bg-purple-600/80 p-3 sm:p-4 rounded-lg sm:col-span-2 lg:col-span-1">
-                  <h4 className="font-semibold text-white text-sm">Registration No.</h4>
-                  <p className="text-white text-sm sm:text-base break-all">{studentData.registrationNumber}</p>
-                </div>
-                <div className="bg-gray-600/80 p-3 sm:p-4 rounded-lg">
-                  <h4 className="font-semibold text-white text-sm">Status</h4>
-                  <p className="text-white font-bold text-sm sm:text-base">{studentData.status}</p>
-                </div>
-                
-                <div className="bg-indigo-600/80 p-3 sm:p-4 rounded-lg col-span-full sm:col-span-2">
-                  <h4 className="font-semibold text-white text-sm">Exam Details</h4>
-                  <p className="text-gray-100 text-sm break-words">{studentData.examName}</p>
-                  <p className="text-green-100 text-xs sm:text-sm">{studentData.examDate} | {studentData.examTime}</p>
-                </div>
-                <div className="bg-pink-600/80 p-3 sm:p-4 rounded-lg col-span-full sm:col-span-2">
-                  <h4 className="font-semibold text-white text-sm">Test Venue</h4>
-                  <p className="text-gray-200 text-sm break-words">{studentData.testVenue}</p>
-                </div>
-              </div>
-            </div>
+             <div className="bg-white rounded-xl p-4 sm:p-6 shadow-xl">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 space-y-2 sm:space-y-0">
+        <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800">
+          👨‍🎓 Student Details
+        </h2>
+        <button
+          onClick={exportToCSV}
+          className="bg-green-500 hover:bg-green-600 text-white px-3 sm:px-4 py-2 rounded-lg transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 text-sm sm:text-base w-full sm:w-auto"
+        >
+          📥 Export CSV
+        </button>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div className="bg-blue-50 p-3 sm:p-4 rounded-lg">
+          <h4 className="font-semibold text-blue-800 text-sm">Candidate Name</h4>
+          <p className="text-blue-600 text-sm sm:text-base break-words">{studentData.name}</p>
+        </div>
+        <div className="bg-orange-50 p-3 sm:p-4 rounded-lg">
+          <h4 className="font-semibold text-orange-800 text-sm">Roll Number</h4>
+          <p className="text-orange-600 text-sm sm:text-base">{studentData.rollNumber}</p>
+        </div>
+        <div className="bg-purple-50 p-3 sm:p-4 rounded-lg sm:col-span-2 lg:col-span-1">
+          <h4 className="font-semibold text-purple-800 text-sm">Registration No.</h4>
+          <p className="text-purple-600 text-sm sm:text-base break-all">{studentData.registrationNumber}</p>
+        </div>
+        <div className="bg-teal-50 p-3 sm:p-4 rounded-lg">
+          <h4 className="font-semibold text-teal-800 text-sm\">Status</h4>
+          <p className="text-teal-600 font-bold text-sm sm:text-base">{studentData.status}</p>
+        </div>
+        <div className="bg-yellow-50 p-3 sm:p-4 rounded-lg col-span-full sm:col-span-2">
+          <h4 className="font-semibold text-yellow-800 text-sm">Exam Details</h4>
+          <p className="text-yellow-600 text-sm break-words">{studentData.examName}</p>
+          <p className="text-yellow-700 text-xs sm:text-sm">{studentData.examDate} | {studentData.examTime}</p>
+        </div>
+        <div className="bg-pink-50 p-3 sm:p-4 rounded-lg col-span-full sm:col-span-2">
+          <h4 className="font-semibold text-pink-800 text-sm">Test Venue</h4>
+          <p className="text-pink-600 text-sm break-words">{studentData.testVenue}</p>
+        </div>
+      </div>
+    </div>
+  );
 
             {/* Marks Breakdown */}
             <div className="bg-white rounded-xl p-4 sm:p-6 shadow-xl">
