@@ -9,13 +9,13 @@ const SSCResultExtractor = () => {
   const [error, setError] = useState('');
 
   const sampleSSCData = {
-    name: "RAJESH KUMAR SHARMA",
+    name: "MANISH NEHRA",
     rollNumber: "2201057187",
     registrationNumber: "32874O2411S6D36748",
-    examName: "SSC CHSL (10+2) Tier-I Examination 2024",
-    examDate: "July 15, 2024",
-    examTime: "09:00 AM - 10:00 AM",
-    testVenue: "ABCD COMPUTER CENTER, NEW DELHI",
+    examName: "	SICPO Paper I 2024",
+    examDate: "June 28, 2024",
+    examTime: "04:00 PM - 6:00 PM",
+    testVenue: "iON Digital Zone iDZ 1 Sector 62",
     totalQuestions: 100,
     totalMarks: 200,
     status: "APPEARED",
@@ -107,21 +107,11 @@ const SSCResultExtractor = () => {
       totalMarksObtained += section.marks;
     });
 
-    const generateRandomSSCName = () => {
-      const firstNames = ["RAJESH", "PRIYA", "AMIT", "SUNITA", "RAHUL", "KAVITA", "SURESH", "MEERA"];
-      const middleNames = ["KUMAR", "DEVI", "SINGH", "KUMARI", "", "CHAND", "PRASAD"];
-      const lastNames = ["SHARMA", "PATEL", "SINGH", "GUPTA", "AGARWAL", "YADAV", "JAIN", "VERMA"];
-      const first = firstNames[Math.floor(Math.random() * firstNames.length)];
-      const middle = middleNames[Math.floor(Math.random() * middleNames.length)];
-      const last = lastNames[Math.floor(Math.random() * lastNames.length)];
-      return middle ? `${first} ${middle} ${last}` : `${first} ${last}`;
-    };
-
     return {
       ...sampleSSCData,
       rollNumber,
       registrationNumber,
-      name: generateRandomSSCName(),
+      name: "MANISH NEHRA",
       totalAttempted,
       totalCorrect,
       totalWrong,
@@ -290,7 +280,7 @@ const SSCResultExtractor = () => {
           <p className="text-purple-600 text-sm sm:text-base break-all">{studentData.registrationNumber}</p>
         </div>
         <div className="bg-teal-50 p-3 sm:p-4 rounded-lg">
-          <h4 className="font-semibold text-teal-800 text-sm\">Status</h4>
+          <h4 className="font-semibold text-teal-800 text-sm">Status</h4>
           <p className="text-teal-600 font-bold text-sm sm:text-base">{studentData.status}</p>
         </div>
         <div className="bg-yellow-50 p-3 sm:p-4 rounded-lg col-span-full sm:col-span-2">
